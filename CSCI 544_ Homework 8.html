@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!-- saved from url=(0052)http://ron.artstein.org/csci544-2017/homework-8.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+<link rel="stylesheet" type="text/css" href="./CSCI 544_ Homework 8_files/csci544.css">
+<title>CSCI 544: Homework 8</title>
+</head>
+
+<body>
+
+<div style="background-color:#900 ; text-align: right ; margin:0px">
+  <a href="http://www.usc.edu/">
+  <img style="padding:11px" src="./CSCI 544_ Homework 8_files/usc-shield-name-white.png" alt="University of Southern California"></a>
+</div>
+
+<h1>CSCI 544&nbsp;— Applied Natural Language Processing</h1>
+
+<hr>
+<h2>Homework 8</h2>
+<h2>Due: April 27, 2017, at 23:59 Pacific Time (11:59 PM)</h2>
+<p>This assignment counts for 5%&nbsp;of the course grade.
+</p><p>Assignments turned in after the deadline but before April&nbsp;29
+are subject to a 30% grade penalty.
+
+</p><hr>
+
+<h2>Overview</h2>
+
+<p>In this assignment you will implement a program that calculates the
+BLEU evaluation metric, as defined in
+<a href="https://aclweb.org/anthology/P/P02/P02-1040.pdf">Papineni,
+Roukos, Ward and Zhu (2002): Bleu: a Method for Automatic
+Evaluation of Machine Translation, ACL 2002</a>.
+You will run the program on sets of candidate and reference
+translations, and calculate the BLEU score for each candidate.
+The assignment will be graded on how closely your calculated BLEU
+score matches the true BLEU score.
+
+</p><h2>Program</h2>
+
+<p>You will write a Python program which will take a
+two paths as parameters: the first parameter will be the path
+to the candidate translation (a single file), and the second parameter will be
+a path to the reference translations (either a single file, or a
+directory if there are multiple reference translations).
+The program will write an output file called
+<code>bleu_out.txt</code> which contains a single floating point
+number, representing the BLEU score of the candidate translation relative
+to the set of reference translations.
+If you use Python&nbsp;2.7, name your program <code>calculatebleu.py</code>;
+if you use Python&nbsp;3.4, name your program <code>calculatebleu3.py</code>.
+For example, your program will be expected to handle:
+
+</p><p><code>&gt; python calculatebleu.py /path/to/candidate
+/path/to/reference</code>
+
+
+</p><p>You can test your program by running it on the following candidate
+and translation files, and comparing the result to the true BLEU score.
+</p><table>
+  <tbody><tr>
+  <th>Language</th>
+  <th>Candidate</th>
+  <th>Reference</th>
+  <th>BLEU score</th>
+  </tr>
+  <tr>
+  <td>German</td>
+  <td><a href="http://ron.artstein.org/csci544-2017/hw8-data/candidate-1.txt">candidate-1.txt</a></td>
+  <td><a href="http://ron.artstein.org/csci544-2017/hw8-data/reference-1.txt">reference-1.txt</a></td>
+  <td>0.151184476557</td>
+  </tr>
+  <tr>
+  <td>Greek</td>
+  <td><a href="http://ron.artstein.org/csci544-2017/hw8-data/candidate-2.txt">candidate-2.txt</a></td>
+  <td><a href="http://ron.artstein.org/csci544-2017/hw8-data/reference-2.txt">reference-2.txt</a></td>
+  <td>0.0976570839819</td>
+  </tr>
+  <tr>
+  <td>Portuguese</td>
+  <td><a href="http://ron.artstein.org/csci544-2017/hw8-data/candidate-3.txt">candidate-3.txt</a></td>
+  <td><a href="http://ron.artstein.org/csci544-2017/hw8-data/reference-3.txt">reference-3.txt</a></td>
+  <td>0.227803041867</td>
+  </tr>
+  <tr>
+  <td>English</td>
+  <td><a href="http://ron.artstein.org/csci544-2017/hw8-data/candidate-4.txt">candidate-4.txt</a></td>
+  <td><table>
+    <tbody><tr><td><a href="http://ron.artstein.org/csci544-2017/hw8-data/reference-4a.txt">reference-4a.txt</a></td></tr>
+    <tr><td><a href="http://ron.artstein.org/csci544-2017/hw8-data/reference-4b.txt">reference-4b.txt</a></td></tr>
+  </tbody></table></td>
+  <td>0.227894952018</td>
+  </tr>
+</tbody></table>
+<p>The German, Greek and Portuguese reference translations above are excerpted from the common test
+set of the
+<a href="http://www.statmt.org/europarl/archives.html">EUROPARL
+corpus</a>; the candidate translations were obtained by taking the
+corresponding English sentences and running them through Google
+Translate. The English reference translations are from two alternative
+translations of the Passover Hagaddah; the candidate translation was
+obtained by running the original Hebrew text through Google translate.
+The actual test will be done with similar files.
+
+
+</p><h2>Grading</h2>
+
+<ul>
+  <li>There will be 10 test cases, so each test case
+  is worth 10% of the grade for the assignment.
+  </li><li>For each test case, the grade will be the (lower) ratio between the BLEU
+  score you compute and the true BLEU score:
+  <table>
+    <tbody><tr><td style="border-bottom:1px solid black">min (your-bleu, true-bleu)</td></tr>
+    <tr><td>max (your-bleu, true-bleu)</td></tr>
+  </tbody></table>
+</li></ul>
+
+<h2>Notes</h2>
+
+<ul>
+  <li>The candidate and reference files will be in UTF-8 encoding.
+  </li><li>You may assume a line-by-line correspondence of sentences
+  between the candidate and reference translations.
+</li></ul>
+
+<h2>Collaboration and external resources</h2>
+
+<ul>
+  <li>This is an individual assignment. You may not work in teams or
+  collaborate with other students. You must be the sole author of 100%
+  of the code you turn in.
+  </li><li>You may not look for solutions on the web, or use code you find
+  online or anywhere else.
+  </li><li>You may use external resources to learn basic functions of
+  Python (such as reading and writing files, handling text strings, and
+  basic math), but the computation performed by the program must be
+  your own work.
+  </li><li>Failure to follow the above rules is considered a violation of
+  academic integrity, and is grounds for failure of the assignment, or
+  in serious cases failure of the course.
+  </li><li>Please discuss any issues you have on the Piazza discussion
+  boards. Do not ask questions about the assignment by email; if we
+  receive questions by email where the response could be helpful for
+  the class, we will ask you to repost the question on the discussion
+  boards.
+</li></ul>
+
+<h2>Submission</h2>
+
+<p>All submissions will be completed through
+<a href="https://labs.vocareum.com/main/main.php">Vocareum</a>;
+please consult the <a href="http://ron.artstein.org/csci544-2017/Student-Help-Vocareum.pdf">instructions
+for how to use Vocareum</a>.
+
+</p><p>Multiple submissions are allowed, and your last submission will be
+graded. The submission script runs the program in a similar way to the
+grading script (but with different data), so you are encouraged to
+<strong>submit early and often</strong> in order to iron out any problems, especially
+issues with the format of the final output.
+<span style="color:red">The performance of your program will be
+measured automatically; failure to format your output correctly may
+result in very low scores, which will not be changed.</span>
+
+</p><p>If you have any issues with Vocareum with regards to logging in,
+submission, code not executing properly, etc., please contact
+<a href="http://www-scf.usc.edu/~siddhajj/">Siddharth</a>.
+  
+
+
+
+</p></body></html>

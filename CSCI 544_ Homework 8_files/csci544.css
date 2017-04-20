@@ -1,0 +1,15 @@
+body     { font-family : Lucida Sans , Calibri , Helvetica , sans-serif }
+code     { font-family : Lucida Console , Consolas , Courier , monospace }
+
+li,dd,dt { margin-bottom : 1ex ; margin-top : 1ex }
+dt       { font-weight : bold }
+
+.italic  { font-style : italic }
+.borders { border : 1px solid gray }
+.gray-bg { background-color : #dddddd }
+
+.trojan-box { border : 0.5em solid #990000 ;
+	      border-radius : 1.5em ;
+	      background-color : #ffcc00 ;
+	      padding : 1em ;
+	    }
